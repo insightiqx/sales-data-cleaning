@@ -1,18 +1,17 @@
-# Sales Data Cleaning and Forecasting Analysis
+# Sales Data Cleaning, Forecasting & Customer Segmentation
 
 ### Overview
-This project demonstrates a full data analysis workflow — from **cleaning** to **forecasting future sales** — using Python and the *Superstore Sales Dataset* (Kaggle).  
-It combines data cleaning, exploratory analysis, and a SARIMAX time series model to predict future sales trends.
+This repository showcases a full analytics workflow on the **Superstore Sales Dataset (Kaggle)** — from data cleaning to predictive modeling and customer segmentation.  
+It demonstrates how to extract, transform, visualize, and model business data using Python, following best practices for reproducibility and clarity.
 
 ---
 
 ### Project Objectives
-1. Detect and remove duplicate and inconsistent records.  
-2. Standardize date and text formats for clean, structured data.  
-3. Handle missing values and basic outlier adjustment.  
-4. Visualize key performance metrics and regional sales trends.  
-5. Build a simple yet effective **SARIMAX forecasting model** for future sales.  
-6. Document and reproduce the workflow end-to-end.
+1. Clean and structure raw sales data for analysis.  
+2. Visualize key performance metrics and regional trends.  
+3. Forecast future sales using **SARIMAX** time series modeling.  
+4. Segment customers using **RFM analysis** and **K-Means clustering**.  
+5. Communicate actionable insights with visuals and documentation.
 
 ---
 
@@ -22,8 +21,9 @@ sales-data-cleaning/
 ├── data/ → raw and cleaned datasets
 ├── notebooks/ → Jupyter notebooks
 │ ├── 01_Superstore_Data_Cleaning_and_Trend_Analysis.ipynb
-│ └── 02_Sales_Forecasting.ipynb
-├── results/ → charts, forecasts, summary reports
+│ ├── 02_Sales_Forecasting.ipynb
+│ └── 03_Customer_Segmentation.ipynb
+├── results/ → charts, forecasts, segmentation summaries
 ├── src/ → reproducible scripts
 ├── requirements.txt
 └── README.md
@@ -34,55 +34,70 @@ sales-data-cleaning/
 ### Tools & Libraries
 - Python 3  
 - pandas, numpy  
-- matplotlib  
+- matplotlib, seaborn  
 - statsmodels (SARIMAX)  
-- scikit-learn  
+- scikit-learn (K-Means)  
 - JupyterLab  
 
 ---
 
-### Key Results
-
-#### Data Cleaning
-- Removed duplicates and standardized date formats for **9,994 records**.  
-- Clean dataset saved as UTF-8 (`data/clean_superstore.csv`).  
-- Charts generated:  
+## **1. Data Cleaning & Trend Analysis**
+- Removed duplicates and standardized date formats for 9,994 records.  
+- Generated visuals:  
   - `sales_by_region.png`  
-  - `monthly_sales_trend.png`
+  - `monthly_sales_trend.png`  
+- Clean dataset saved as `data/clean_superstore.csv`.
 
-#### Forecasting
-- Built a **SARIMAX (p,d,q)** model for monthly sales.  
-- Achieved low forecast error (MAE < 10% of mean sales).  
-- Predicted the next **6 months** of sales with confidence intervals.  
-- Files generated:  
+---
+
+## **2. Sales Forecasting (SARIMAX)**
+- Built and tuned a SARIMAX model to forecast monthly sales.  
+- Achieved a low Mean Absolute Error (MAE < 10% of mean sales).  
+- Predicted the next 6 months of sales and exported:  
   - `sales_forecast_next6months.csv`  
-  - `forecast_summary.txt`  
-  - forecast chart (`results/` folder)
+  - `forecast_summary.txt`
+
+---
+
+## **3. Customer Segmentation (RFM + K-Means)**
+- Calculated **Recency**, **Frequency**, and **Monetary Value** for each customer.  
+- Scaled the variables and applied **K-Means clustering (k=4)**.  
+- Identified four customer segments based on purchasing behavior:
+  - **Cluster 0:** High-value, frequent, recent buyers.  
+  - **Cluster 1:** Inactive or one-time customers.  
+  - **Cluster 2:** Moderate buyers with medium recency.  
+  - **Cluster 3:** New or reactivated customers.  
+- Visuals generated:
+  - `segmentation_scatter.png`  
+  - `monetary_by_cluster.png`  
+- Results saved to:
+  - `customer_segments.csv`  
+  - `segmentation_summary.txt`
 
 ---
 
 ### How to Run
 1. Clone the repository  
-  
+   
    git clone https://github.com/<tu-usuario>/sales-data-cleaning.git
    cd sales-data-cleaning
 
-Create a virtual environment
-
+Create and activate a virtual environment
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1   # (Windows PowerShell)
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-Run the cleaning script
-
+Run the main script
 python .\src\clean_and_analyze.py
+
 Open JupyterLab and explore the notebooks
-
-
 jupyter lab
-01_Superstore_Data_Cleaning_and_Trend_Analysis.ipynb
 
-02_Sales_Forecasting.ipynb
+01 → Cleaning & Trend Analysis
+
+02 → Sales Forecasting
+
+03 → Customer Segmentation
 
 Example Insights
 Top Region: West — highest total sales.
@@ -91,8 +106,9 @@ Top Category: Technology — strongest revenue driver.
 
 Peak Month: November — clear seasonal pattern.
 
-Forecast: Positive growth trend expected over the next 6 months.
+High-Value Customers: Frequent and high-spending buyers concentrated in specific regions.
 
+Forecast: Steady growth trend expected over the next 6 months.
 
 
 Author
