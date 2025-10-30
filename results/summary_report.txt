@@ -1,0 +1,9 @@
+Sales Data Cleaning and Trend Analysis — Summary
+================================================
+
+Rows after cleaning: 9,994
+
+Key insights:
+ - Top region by sales: West (Sales=$683,855)
+ - Top category: Furniture (Sales=$724,402)
+ - Best month (by sales): 2017-11 (Sales=$104,708)
